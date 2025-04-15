@@ -17,5 +17,9 @@ The FastAPI application contained two login endpoints both mapped to the "/login
 
 The EmailService implementation previously imported unnecessary built-in types, which added clutter to the code. I noticed that the SMTP connection was triggering disconnections during the login phase, causing email sending failures. To address this, I ensured that the settings configuration was correctly passed to the SMTPClient constructor. I removed redundant imports such as ValueError, dict, and str since these are available by default in Python. I confirmed that the send_user_email method correctly maps email types to subject lines and renders HTML content via the TemplateManager. I also added inline comments to improve code clarity and maintainability. These changes have resolved the SMTP connection issues and streamlined the email service functionality for sending verification emails.
 
-## No.4--
-[Issue 4]()
+## No.4--Fix Invalid UUID Format in Non-Existent User Tests
+[Issue 4](https://github.com/achutha25/event_manager/tree/4-fix-invalid-uuid-format-in-non-existent-user-tests)
+
+The user service tests were failing because an invalid string ("non-existent-id") was used where a valid UUID was required. This invalid input caused UUID conversion errors and led to unexpected exceptions during test execution. I identified the root cause by reviewing the error logs and pinpointed the tests for fetching and deleting non-existent users. To resolve this, I replaced the invalid string with a properly formatted UUID, "123e4567-e89b-12d3-a456-426614174000". This valid UUID is guaranteed not to exist in the database, ensuring that the service functions return None or False as expected. After implementing the change, the tests for non-existent users now pass successfully without causing conversion errors. These modifications improved type consistency across the tests and enhanced the overall reliability of the user service.
+
+

@@ -46,9 +46,17 @@ The test suite for the API endpoints was failing due to missing token fixtures, 
 
 I discovered that the test fixtures contained field name inconsistencies, using keys like "username" and "full_name" while the User model expected "nickname", "first_name", and "last_name". I updated the fixture definitions to reflect the correct field names, ensuring that the test data aligns with the model schema. I also noticed that a fixture was supplying an invalid UUID string ("unique-id-string") and replaced it with a properly formatted UUID string. I ensured that each user-related fixture (locked, verified, unverified, admin, and manager) is consistent with the database model and test expectations. I maintained the setup and teardown mechanisms for a clean database state for each test. I refined the common test data fixtures to provide clarity and accurate values. I verified that these changes resolved validation errors and improved test reliability. Overall, these modifications streamlined the test configuration and ensured consistency across the application and its tests.
 
+## Project images deployed to DockerHub
 
 ![Project image deployed to dockerhub](images/img1.png)
 
 ![image 2](images/img2.png)
 
 ![image 3](images/img3.png)
+
+
+## Challenges faced and Learning from the assignment
+
+In this assignment, I encountered issues with missing token fixtures, which caused test failures for endpoints that required admin, manager, or regular user tokens. The absence of these fixtures meant that many tests could not simulate authenticated requests properly. I resolved this by defining dummy token fixtures in the test configuration, ensuring that all security-dependent tests had the necessary tokens. Additionally, I discovered a duplicate /login/ endpoint that created ambiguous routing behavior and removed the redundant endpoint to streamline the authentication process. These changes contributed significantly to the overall stability of the API tests and improved our continuous integration process.
+
+Another set of challenges arose from inconsistencies in user model field naming and invalid UUID formats in test data, which led to validation errors. The use of keys like "username" and "full_name" in fixtures did not match the User model's expected "nickname", "first_name", and "last_name" fields. I updated the fixture definitions to align with the model, and replaced invalid UUID strings with properly formatted ones (e.g., "123e4567-e89b-12d3-a456-426614174000"). Moreover, I addressed SMTP connection issues in our email service by ensuring configurations were correctly passed, and by handling exceptions gracefully during email dispatch. Overall, these refinements enhanced the consistency, reliability, and clarity of both our tests and application code.

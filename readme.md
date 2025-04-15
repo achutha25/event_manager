@@ -11,3 +11,11 @@ In my user_schemas.py file, I identified that the UserResponse model had a dupli
 [Issue 2](https://github.com/achutha25/event_manager/tree/2-remove-duplicate-login-endpoint)
 
 The FastAPI application contained two login endpoints both mapped to the "/login/" path, which created ambiguous routing and potential conflicts during authentication requests. This duplication led to uncertainty regarding which endpoint would handle incoming login requests, causing inconsistent behavior. After careful review, I discovered that one endpoint was intended for inclusion in the API schema while the duplicate was marked with include_in_schema=False. I resolved the issue by removing the duplicate login endpoint, thereby leaving only a single, consistent endpoint to manage user authentication. I then verified that the remaining endpoint correctly validates credentials and returns a valid access token, ensuring that the authentication flow remains intact. This change not only streamlined the API routing but also improved code clarity and maintainability.
+
+## No.3--Clean Up EmailService and Resolve SMTP Connection Issues
+[Issue 3](https://github.com/achutha25/event_manager/tree/3-clean-up-emailservice-and-resolve-smtp-connection-issues)
+
+The EmailService implementation previously imported unnecessary built-in types, which added clutter to the code. I noticed that the SMTP connection was triggering disconnections during the login phase, causing email sending failures. To address this, I ensured that the settings configuration was correctly passed to the SMTPClient constructor. I removed redundant imports such as ValueError, dict, and str since these are available by default in Python. I confirmed that the send_user_email method correctly maps email types to subject lines and renders HTML content via the TemplateManager. I also added inline comments to improve code clarity and maintainability. These changes have resolved the SMTP connection issues and streamlined the email service functionality for sending verification emails.
+
+## No.4--
+[Issue 4]()

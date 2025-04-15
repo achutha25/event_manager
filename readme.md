@@ -45,3 +45,10 @@ The test suite for the API endpoints was failing due to missing token fixtures, 
 [Link to issue](https://github.com/achutha25/event_manager/issues/6)
 
 I discovered that the test fixtures contained field name inconsistencies, using keys like "username" and "full_name" while the User model expected "nickname", "first_name", and "last_name". I updated the fixture definitions to reflect the correct field names, ensuring that the test data aligns with the model schema. I also noticed that a fixture was supplying an invalid UUID string ("unique-id-string") and replaced it with a properly formatted UUID string. I ensured that each user-related fixture (locked, verified, unverified, admin, and manager) is consistent with the database model and test expectations. I maintained the setup and teardown mechanisms for a clean database state for each test. I refined the common test data fixtures to provide clarity and accurate values. I verified that these changes resolved validation errors and improved test reliability. Overall, these modifications streamlined the test configuration and ensured consistency across the application and its tests.
+
+
+![Project image deployed to dockerhub](images/img1.png)
+
+![image 2](images/img2.png)
+
+![image 3](images/img3.png)
